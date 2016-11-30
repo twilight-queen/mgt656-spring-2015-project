@@ -16,4 +16,15 @@
 <br/>
 <p3> <span id="location"><strong>Location: </strong>{{event.location}}</span></p3>
 <ul id="attendees"><p4><strong>Attendees:</strong> {{event.attending}}</p4></ul>
+    
+  <form id="rsvp" method="POST">
+    <p>
+    <label for="email">RSVP Email:</label>
+    <input type="text" name="email" placeholder="Must be @yale.edu">
+    </p>
+    
+    <p>
+    <input id="submit" type="submit" value="Submit">
+    </p>
+    </form>
 {% endblock %}
