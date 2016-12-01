@@ -144,7 +144,7 @@ if (validator.equals(request.body.minute, "0") === false && validator.equals(req
       location: request.body.location,
       image: request.body.image,
       date: new Date(),
-      id: myId+1,
+      id: myId,
       attending: []
     };
     events.all.push(newEvent);
