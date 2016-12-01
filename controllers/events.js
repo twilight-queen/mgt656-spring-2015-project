@@ -35,7 +35,7 @@ var allowedDateInfo = {
 /**
  * Controller that renders a list of events in HTML.
  */
-function listEvents(request, response) {
+ function listEvents(request, response) {
   var currentTime = new Date();
   var contextData = {
     'events': events.all,
@@ -86,11 +86,12 @@ if (validator.isInt(request.body.month) === false){
     contextData.errors.push('month should be an integer');
   }
 
-if (validator.isInt(request.body.date) === false){
-    contextData.errors.push('date should be an integer');
+/*if (validator.isInt(request.body.date) === false){
+    contextData.errors.push('day should be an integer');
   }
+*/
 
-if (request.body.date > 31 && request.body.date <1) {
+if (request.body.day > 31 && request.body.day <1) {
     contextData.errors.push('Date must be between 1 and 31');
   }
 
@@ -114,11 +115,13 @@ if (validator.contains(request.body.email,'@yale.edu') === false) {
   }
     
   if (contextData.errors.length === 0) {
+    var myId = events.all.length;
     var newEvent = {
       title: request.body.title,
       location: request.body.location,
       image: request.body.image,
       date: new Date(),
+      id: myId+1,
       attending: []
     };
     events.all.push(newEvent);
@@ -126,7 +129,7 @@ if (validator.contains(request.body.email,'@yale.edu') === false) {
   }else{
     response.render('create-event.html', contextData);
   }
-}
+} 
 
 function eventDetail (request, response) {
   var ev = events.getById(parseInt(request.params.id));
@@ -155,6 +158,8 @@ if (validator.contains(request.body.email.toLowerCase(),'@yale.edu') === false) 
     contextData.errors.push('Invalid email');
     response.render('event-detail.html', contextData);    
   }
+  
+  
 
 }
 
