@@ -107,9 +107,9 @@ if (validator.isInt(request.body.month) === false){
  if (validator.isInt(request.body.day) === false){
     contextData.errors.push('Day should be an integer');
   }
-  var day = parseInt(request.body.day)
-  if (day > 31 || day < 1) {
-    contextData.errors.push('Date must be between 1 and 31');
+//  var day = parseInt(request.body.day)
+if (request.body.day > 31 || request.body.day < 1) {
+    contextData.errors.push('Day must be between 1 and 31');
   }
 
   if (validator.isInt(request.body.hour) === false){
