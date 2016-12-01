@@ -5,29 +5,61 @@
   </header>
 {% endblock %}
 
+
 {% block mainContent %}
-  <style>
-    body {
-      background: url("https://s11.postimg.org/6nry9tm0z/drinking_games_2.jpg");
-      background-size: cover;
-      background-position: center;
-    }
-  </style>
+ <body>
   <p>
     Welcome to {{ title }}. {{tagline}}
   </p>
   <img id="logo" src="https://s13.postimg.org/x1l4xlu6v/Drinking_Buddies_LOGO.png" style="width: 33%; height: 33%">
-  <p>Here is our list of events</p>
-  <div style ="border: 1px style black">
+  <p style="color: DarkBlue"><strong>Here is our list of events</strong></p>
+  
+  <div style ="background-color: rgba(255,255,255,0.3)">
     {% include "fragments/events-list.html" %}
   </div>
  
-  <p>
+ 
+  <p style="color: brown">
     Check out the <a href="/about">About us</a> page
     as well as the <a href="/events">Events</a> page.
   </p>
   <p>
-    <a id="new" href="/events/new">Create a new event</a>
+    <a id="new" href="/events/new"><input type="button" value="Create a new event"></a>
   </p>
+</body>
+
+
+<style>
+     body {
+      background: url("https://s11.postimg.org/6nry9tm0z/drinking_games_2.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+     div {
+      width: 800px;
+     }
+    input[type=button] {
+     display: inline-block;
+     background-color: Navy;
+     border-radius: 5px;
+     border: none;
+     color: White;
+     padding: 5px 15px;
+     font-size: 15px;
+     text-decoration: none;
+     text-align: center;
+     font-weight: bold;
+     margin: 4px 2px;
+     cursor: pointer;
+     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+    input[type=button]:hover {
+       background-color: AliceBlue;
+       color: Navy;
+     }
+   </style>
+
+
+
 
 {% endblock %}

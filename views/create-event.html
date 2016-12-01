@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 
+
 {% block mainContent %}
 <style>
     body {
@@ -19,17 +20,21 @@
     </div>
   {% endif %}
 
+
 	
 
 
+
+
 <form id="create-event" method="POST" >
+   
     <label for="title">Event title:</label>
     <input type="text" name="title" placeholder="dope title">
     
     
-    <p>
+    <div>
     <label for="day">Event Date:</label>
-     <select  name="day" id="day" onchange="allowedDateInfo"> 
+     <select type=select  name="day" id="day" onchange="allowedDateInfo"> 
       <option value='0'>1</option>
       <option value='1'>2</option>       
       <option value='2'>3</option>       
@@ -62,12 +67,12 @@
       <option value='29'>30</option>
       <option value='30'>31</option>
       </select>
-    </p>
+    </div>
     
     
-    <p>
+    <div>
     <label for="month">Event Month:</label>
-    <select name="month" id="month" onchange="allowedDateInfo">
+    <select type=select name="month" id="month" onchange="allowedDateInfo">
     <option value="0">January</option>
     <option value="1">February</option>
     <option value="2">March</option>
@@ -81,21 +86,22 @@
     <option value="10">November</option>
     <option value="11">December</option>
   </select>
-    </p>
+    </div>
     
     
-    <p>
+    <div>
     <label for="year">Event Year:</label>
-    <select name="year" id="year" onchange="allowedDateInfo">
+    <select type=select name="year" id="year" onchange="allowedDateInfo">
       <option value="2015">2016</option>
       <option value="2016">2017</option>
     </select>
-    </p>
+    </div>
     
 
-    <p>
+
+    <div>
     <label for="hour">Event Hour:</label>
-    <select  name="hour" id="hour" onchange="allowedDateInfo"> 
+    <select type=select name="hour" id="hour" onchange="allowedDateInfo"> 
       <option value='0'>0</option>
       <option value='1'>1</option>       
       <option value='2'>2</option>       
@@ -121,55 +127,84 @@
       <option value='22'>22</option>
       <option value='23'>23</option>
       </select>
-    </p>
+    </div>
     
     
-    <p>
+    <div>
     <label for="minute">Event Minute:</label>
-    <select  name="minute" id="minute" onchange="allowedDateInfo"> 
+    <select type=select name="minute" id="minute" onchange="allowedDateInfo"> 
       <option value='0'>0</option>
       <option value='30'>30</option>       
     </select>
-    </p>
+    </div>
+
 
     
-    <p>
+    <div>
     <label for="location">Event Location:</label>
     <input type="text" name="location" placeholder="pls not GPSCY">
-    </p>
+    </div>
     
     
-    <p>
+    <div>
     <label for="image">Event Image:</label>
     <input type="text" name="image" placeholder="dope meme">
-    </p>
+    </div>
     
-    
-    <p>
+    <br/>
+    <div>
     <label for="attendees">List of Event Attendees:</label>
     <input type="text" name="attendees" placeholder="all your peeps">
-    </p>
+    </div>
     
-    
-    <p>
+    <br/>
+    <div>
     <label for="RSVP">Will you attend?:</label> <br>
     <input type="radio" name="RSVP" value="yes"> Yes<br>
     <input type="radio" name="RSVP" value="no"> No<br>
     <input type="radio" name="RSVP" value="maybe"> Maybe
-    </p>
+    </div>
     
-    
-     <p>
+    <br/>
+    <div>
     <label for="email">RSVP Email:</label>
     <input type="text" name="email" placeholder="Must be @yale.edu">
-    </p>
+    </div>
     
-    
-    <p>
+    <br/>
+    <div>
     <input id="submit" type="submit" value="Submit">
-    </p>
+    </div>
+    
+  
   
 </form>
+
+
+<style>
+    form {
+      background-color: rgba(255,255,255,0.7);
+      background-size: cover;
+      width: 400px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      padding-left: 20px;
+     }
+    input[type=submit] {
+     display: inline-block;
+     background-color: DarkBlue;
+     border-radius: 5px;
+     border: none;
+     color: white;
+     padding: 5px 15px;
+     text-decoration: none;
+     text-align: center;
+     font-weight: bold;
+     margin: 4px 2px;
+     cursor: pointer;
+     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+</style>
+
+
 {% endblock %}
-
-
