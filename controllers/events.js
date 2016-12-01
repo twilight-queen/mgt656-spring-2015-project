@@ -137,12 +137,17 @@ function eventDetail (request, response) {
 }
 
 function rsvp (request, response){
+  var contextData = {errors: []};
   var ev = events.getById(parseInt(request.params.id));
   if (ev === null) {
     response.status(404).send('No such event');
   }
 
-  if(validator.isEmail(request.body.email)){
+if (validator.contains(request.body.email.toLowerCase(),'@yale.edu') === false) {
+    contextData.errors.push('Your email must contain @yale.edu');
+  }
+
+  if(validator.isEmail(request.body.email) && contextData.errors.length === 0){
     ev.attending.push(request.body.email);
     response.redirect('/events/' + ev.id);
   }else{
