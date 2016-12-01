@@ -57,6 +57,19 @@ function newEvent(request, response){
  * Validates the form and adds the new event to
  * our global list of events.
  */
+ 
+function isImageURL(x){
+  if(validator.isURL(x)){
+    var y = x.toLowerCase();
+    var isGif = y.endsWith(".gif");
+    var isPng = y.endsWith(".png");
+    if(isPng || isGif){
+      return true;
+    }
+  }
+  return false;
+} 
+ 
 function saveEvent(request, response){
   var contextData = {errors: []};
 
@@ -70,15 +83,15 @@ if (validator.isLength(request.body.location, 5, 50) === false) {
   
   console.log(request.body.year);
 
-if (request.body.year > 2017 && request.body.year < 2015) {
-    contextData.errors.push('Year should be 2016 or 2017');
+if (request.body.year > 2016 || request.body.year < 2015) {
+    contextData.errors.push('Year should be 2015 or 2016');
   }
 
 if (validator.isInt(request.body.year) === false){
     contextData.errors.push('Year should be an integer');
   }
 
-if (request.body.month > 11 && request.body.month <0 ) {
+if (request.body.month > 11 || request.body.month <0 ) {
     contextData.errors.push('Month must be between 0 and 11');
   }
 
@@ -91,17 +104,22 @@ if (validator.isInt(request.body.month) === false){
   }
 */
 
-if (request.body.day > 31 && request.body.day <1) {
+ if (validator.isInt(request.body.day) === false){
+    contextData.errors.push('Day should be an integer');
+  }
+  var day = parseInt(request.body.day)
+  if (day > 31 || day < 1) {
     contextData.errors.push('Date must be between 1 and 31');
   }
 
-if (request.body.hour > 23 && request.body.hour <0) {
+  if (validator.isInt(request.body.hour) === false){
+    contextData.errors.push('hour should be an integer');
+  }
+  var hour = parseInt(request.body.hour);
+  if (hour > 23 || hour <0) {
     contextData.errors.push('Hour must be between 0 and 23');
   }
 
-if (validator.isInt(request.body.hour) === false){
-    contextData.errors.push('hour should be an integer');
-  }
   
 console.log(request.body.minute);
 console.log(validator.equals(request.body.minute, "0"));
@@ -110,9 +128,14 @@ if (validator.equals(request.body.minute, "0") === false && validator.equals(req
     contextData.errors.push('Minute must be either 0 or 30');
   }
    
-if (validator.contains(request.body.email,'@yale.edu') === false) {
-    contextData.errors.push('Your email must contain @yale.edu');
+// if (validator.contains(request.body.email,'@yale.edu') === false) {
+//     contextData.errors.push('Your email must contain @yale.edu');
+//   }
+
+   if(isImageURL(request.body.image) === false){
+    contextData.errors.push('Image should be a URL, and a png or gif.');
   }
+
     
   if (contextData.errors.length === 0) {
     var myId = events.all.length;
@@ -125,11 +148,14 @@ if (validator.contains(request.body.email,'@yale.edu') === false) {
       attending: []
     };
     events.all.push(newEvent);
-    response.redirect('/events');
+    response.redirect('/events/' + myId);
+    
   }else{
     response.render('create-event.html', contextData);
   }
 } 
+
+
 
 function eventDetail (request, response) {
   var ev = events.getById(parseInt(request.params.id));
