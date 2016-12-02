@@ -144,6 +144,7 @@ if (validator.equals(request.body.minute, "0") === false && validator.equals(req
       image: request.body.image,
       date: new Date(),
       id: events.all.length,
+      attendees: request.body.attendees,
       attending: []
     };
     events.all.push(newEvent);
@@ -175,7 +176,7 @@ if (validator.contains(request.body.email.toLowerCase(),'@yale.edu') === false) 
     contextData.errors.push('Your email must contain @yale.edu');
   }
 
-  if(validator.isEmail(request.body.email) && contextData.errors.length === 0){
+if(validator.isEmail(request.body.email) && contextData.errors.length === 0){
     ev.attending.push(request.body.email);
     response.redirect('/events/' + ev.id);
   }else{

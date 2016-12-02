@@ -8,6 +8,10 @@
       background-size: cover;
       background-position: center;
     }
+    ul {
+    padding-left: 30px;
+    }
+
   </style>
     {% if errors %}
     <div class="form-errors">
@@ -32,8 +36,13 @@
 <br/>
 <div><p2> <span id="date"><strong>Time:</strong> {{event.date|prettyDate}}</span> </p2></div>
 <br/>
-<p3> <span id="location"><strong>Location: </strong>{{event.location}}</span></p3>
-<ul id="attendees"><p4><strong>Attendees:</strong> {{event.attending}}</p4></ul>
+<div><p3> <span id="location"><strong>Location: </strong>{{event.location}}</span></p3></div>
+<br/>
+<div>
+  <p4><strong>Attendees:</strong><ul id="attendees"> 
+  <li>Confirmed: {{event.attendees}} </li>
+  <li>New RSVP attendee(s): {{event.attending}}</li></p4></ul>
+  </div>
     
   <form id="rsvp" method="POST">
     <p>
